@@ -14,6 +14,9 @@ builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 
 var app = builder.Build();
 
