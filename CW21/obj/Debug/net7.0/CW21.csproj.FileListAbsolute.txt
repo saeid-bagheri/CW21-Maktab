@@ -1194,3 +1194,9 @@ H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\obj\Debug\net7.0\
 H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\obj\Debug\net7.0\CW21.pdb
 H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\obj\Debug\net7.0\CW21.genruntimeconfig.cache
 H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\obj\Debug\net7.0\ref\CW21.dll
+H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\bin\Debug\net7.0\Serilog.dll
+H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\bin\Debug\net7.0\Serilog.Formatting.Compact.dll
+H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\bin\Debug\net7.0\Serilog.Sinks.File.dll
+H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\bin\Debug\net7.0\Serilog.Sinks.MSSqlServer.dll
+H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\bin\Debug\net7.0\Serilog.Sinks.PeriodicBatching.dll
+H:\saeid\Programming\maktab sharif\Weeks\Week 22\Solution\CW21\bin\Debug\net7.0\Serilog.Sinks.Seq.dll

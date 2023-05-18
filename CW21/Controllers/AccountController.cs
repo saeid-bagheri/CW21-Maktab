@@ -2,11 +2,14 @@
 using CW21.Models.ViewModels;
 using CW21.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace CW21.Controllers
 {
     public class AccountController : Controller
     {
+
+
         private readonly IPatientRepository _patientRepository;
 
         public AccountController(IPatientRepository patientRepository)
@@ -44,6 +47,23 @@ namespace CW21.Controllers
 
         public IActionResult LoginPatient()
         {
+            try
+            {
+                int x = 10;
+                int y = 0;
+                int z = x / y;
+            }
+            catch (Exception ex)
+            {
+
+                //Log.ForContext("test", "error message").Information("wrong devvvv");
+                Log.ForContext("CrudState", "insert")
+                    .ForContext("ProductId", 10)
+                    .Information("log in sql");
+                Log.Error("wrong devvvv with file");
+                Log.Warning("this is warning brother");
+                throw;
+            }
             return View();
         }
 

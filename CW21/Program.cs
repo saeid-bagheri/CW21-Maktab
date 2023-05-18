@@ -2,6 +2,11 @@ using CW21.DAL.Context;
 using CW21.Repositories;
 using CW21.Repositories.Doctors;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Sinks.MSSqlServer;
+using System.Collections.ObjectModel;
+using System.Data;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +20,68 @@ builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 
 builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
+//builder.Logging.AddConsole();
+//Log.Logger = new LoggerConfiguration()
+//.WriteTo.Seq("http://localhost:5341")
+//.CreateLogger();
+
+var config = new ConfigurationBuilder()
+.AddJsonFile("appsettings.Development.json", optional: false)
+.Build();
+
+var connectionString = config.GetSection("LogConfigs:ConnectionString").Value;
+
+var sinkOpts = new MSSqlServerSinkOptions()
+{
+    AutoCreateSqlDatabase = true,
+    AutoCreateSqlTable = true,
+    TableName = "Log",
+    SchemaName = "Base",
+};
+
+
+var columnOpts = new ColumnOptions()
+{
+    AdditionalColumns = new Collection<SqlColumn>()
+    {
+        new SqlColumn()
+        {
+        ColumnName="CrudState" , DataType=SqlDbType.NVarChar
+        },
+        new SqlColumn()
+        {
+        ColumnName="ProductId" , DataType=SqlDbType.Int
+        }
+    }
+};
+
+
+//Serilog.Debugging.SelfLog.Enable(msg =>
+//{
+//    Debug.Print(msg);
+//    Debugger.Break();
+//});
+
+
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Logger(x =>
+    {
+        x.WriteTo.Seq("http://localhost:5341");
+    })
+    .WriteTo.Logger(x =>
+    {
+        x.WriteTo.File(@"H:\\saeid\\Programming\\maktab sharif\\Weeks\\Week 22\\Solution\\CW21\LogText.txt");
+        x.MinimumLevel.Error();
+    })
+    .WriteTo.Logger(x =>
+    {
+        x.WriteTo.MSSqlServer(connectionString: connectionString, sinkOptions: sinkOpts, columnOptions: columnOpts);
+    })
+    .CreateLogger();
+
+
+
 
 
 var app = builder.Build();
