@@ -30,6 +30,10 @@ var config = new ConfigurationBuilder()
 .Build();
 
 var connectionString = config.GetSection("LogConfigs:ConnectionString").Value;
+var filePath = config.GetSection("LogConfigs:FilePath").Value;
+var serverUrl = config.GetSection("LogConfigs:ServerUrlSeq").Value;
+
+
 
 var sinkOpts = new MSSqlServerSinkOptions()
 {
@@ -67,11 +71,11 @@ var columnOpts = new ColumnOptions()
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Logger(x =>
     {
-        x.WriteTo.Seq("http://localhost:5341");
+        x.WriteTo.Seq(serverUrl);
     })
     .WriteTo.Logger(x =>
     {
-        x.WriteTo.File(@"H:\\saeid\\Programming\\maktab sharif\\Weeks\\Week 22\\Solution\\CW21\LogText.txt");
+        x.WriteTo.File(filePath);
         x.MinimumLevel.Error();
     })
     .WriteTo.Logger(x =>
