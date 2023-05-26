@@ -1,3 +1,4 @@
+using CW21.Cache;
 using CW21.DAL.Context;
 using CW21.Repositories;
 using CW21.Repositories.Doctors;
@@ -13,11 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<AppDbContext>(option =>
-option.UseSqlServer("Server=.;Database=DoctorDb;User Id=sa;Password=<YourStrong@Passw0rd>;TrustServerCertificate=True;"));
+option.UseSqlServer("Server=.;Database=db_Maktab_CW21;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;"));
 
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+
+
+
 
 builder.Logging.ClearProviders();
 //builder.Logging.AddConsole();
@@ -25,9 +29,18 @@ builder.Logging.ClearProviders();
 //.WriteTo.Seq("http://localhost:5341")
 //.CreateLogger();
 
+
+
 var config = new ConfigurationBuilder()
-.AddJsonFile("appsettings.Development.json", optional: false)
-.Build();
+    .AddJsonFile("appsettings.json", optional: false)
+    .AddJsonFile("appsettings.Development.json", optional: false)
+    .Build();
+
+
+
+builder.Services.Configure<Configs>(builder.Configuration.GetSection("cache"));
+
+
 
 var connectionString = config.GetSection("LogConfigs:ConnectionString").Value;
 var filePath = config.GetSection("LogConfigs:FilePath").Value;

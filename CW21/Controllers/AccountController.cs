@@ -47,23 +47,24 @@ namespace CW21.Controllers
 
         public IActionResult LoginPatient()
         {
-            try
-            {
-                int x = 10;
-                int y = 0;
-                int z = x / y;
-            }
-            catch (Exception ex)
-            {
+            _patientRepository.GetPatients();
+            //try
+            //{
+            //    int x = 10;
+            //    int y = 0;
+            //    int z = x / y;
+            //}
+            //catch (Exception ex)
+            //{
 
-                //Log.ForContext("test", "error message").Information("wrong devvvv");
-                Log.ForContext("CrudState", "insert")
-                    .ForContext("ProductId", 10)
-                    .Information("log in sql");
-                Log.Error("wrong devvvv with file");
-                Log.Warning("this is warning brother");
-                throw;
-            }
+            //    //Log.ForContext("test", "error message").Information("wrong devvvv");
+            //    Log.ForContext("CrudState", "insert")
+            //        .ForContext("ProductId", 10)
+            //        .Information("log in sql");
+            //    Log.Error("wrong devvvv with file");
+            //    Log.Warning("this is warning brother");
+            //    throw;
+            //}
             return View();
         }
 

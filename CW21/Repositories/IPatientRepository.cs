@@ -7,5 +7,6 @@ namespace CW21.Repositories
     {
         int RegisterPatient(Patient patient);
         bool LoginPatient(LoginViewModel model);
+        List<Patient> GetPatients();
     }
 }

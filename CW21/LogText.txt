@@ -13,3 +13,4 @@
 2023-05-18 17:10:15.914 +03:30 [ERR] wrong devvvv with file
 2023-05-18 17:12:29.719 +03:30 [ERR] wrong devvvv with file
 2023-05-18 17:16:48.407 +03:30 [ERR] wrong devvvv with file
+2023-05-26 15:36:25.324 +03:30 [ERR] wrong devvvv with file
